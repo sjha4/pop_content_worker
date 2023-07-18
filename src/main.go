@@ -15,8 +15,8 @@ import (
 var yggdDispatchSocketAddr string
 
 func main() {
-        // aruzicka
-        log.SetLevel(log.LevelInfo)
+	// aruzicka
+	log.SetLevel(log.LevelInfo)
 	// Get initialization values from the environment.
 	var ok bool
 	yggdDispatchSocketAddr, ok = os.LookupEnv("YGG_SOCKET_ADDR")
@@ -24,8 +24,9 @@ func main() {
 		log.Fatal("Missing YGG_SOCKET_ADDR environment variable")
 	}
 	if ok {
-		log.Info("echoing OK from main")	
+		log.Info("echoing OK from main")
 	}
+	connectPulp()
 
 	// Dial the dispatcher on its well-known address.
 	conn, err := grpc.Dial(yggdDispatchSocketAddr, grpc.WithInsecure())

@@ -21,10 +21,10 @@ type echoServer struct {
 // Send implements the "Send" method of the Worker gRPC service.
 func (s *echoServer) Send(ctx context.Context, d *pb.Data) (*pb.Receipt, error) {
 	go func() {
-		log.Tracef("received data: %#v", d)
+		listUpstreamPulps();
+		log.Info("received data: %#v", d)
 		message := string(d.GetContent())
-		log.Infof("echoing %v", message)
-
+		log.Info("echoing %v", message)
 		// Dial the Dispatcher and call "Finish"
 		conn, err := grpc.Dial(yggdDispatchSocketAddr, grpc.WithInsecure())
 		if err != nil {
