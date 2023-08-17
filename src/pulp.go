@@ -46,5 +46,14 @@ func listUpstreamPulps() {
 		log.Fatalf("Full HTTP response: %v\n", r)
 	}
 	// response from `UpstreamPulpsList`: PaginatedUpstreamPulpResponseList
-	log.Infof("Response from `StatusAPI.StatusRead`: %v\n", *resp.Count)
+	log.Infof("Response from `StatusAPI.StatusRead`: %v\n", resp)
+        log.Infof("Count: %v", resp.GetCount())
+        log.Infof("%v", resp.Results)
+        for i := 0; i < int(resp.GetCount()); i++ {
+                res:= resp.Results[i]
+                log.Infof("APIRoot %v", res.ApiRoot)
+                log.Infof("BaseURL%v", res.BaseUrl)
+
+        }
+        log.Info("Printed everything\n")
 }
