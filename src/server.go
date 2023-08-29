@@ -24,7 +24,18 @@ func (s *echoServer) Send(ctx context.Context, d *pb.Data) (*pb.Receipt, error) 
 		log.Infof("received data: %v", d)
 		message := string(d.GetContent())
 		log.Infof("echoing %v", message)
-		listUpstreamPulps()
+		log.Infof("echoing %v", d.GetMetadata())
+
+// 		upstream_pulp_name := d.GetMetadata()["name"]
+// 		upstream_pulp_base_url := d.GetMetadata()["base_url"]
+// 		upstream_pulp_api_root := d.GetMetadata()["api_root"]
+
+		log.Infof("echoing Name: %v", d.GetMetadata()["name"])
+		log.Infof("echoing Base_addr: %v", d.GetMetadata()["base_url"])
+		log.Infof("echoing API Root: %v", d.GetMetadata()["api_root"])
+		//listUpstreamPulps()
+		//createUpstreamPulp(upstream_pulp_name, upstream_pulp_base_url, upstream_pulp_api_root)
+		replicateUpstreamPulp()
 		// Dial the Dispatcher and call "Finish"
 		conn, err := grpc.Dial(yggdDispatchSocketAddr, grpc.WithInsecure())
 		if err != nil {
