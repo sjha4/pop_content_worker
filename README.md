@@ -1,4 +1,5 @@
-# echo_worker
+# pop_content_worker
+
 Test repo with yggdrasil worker to track pulp replication via yggdrasil
 
 Example ruby code to send messages to this worker:
