@@ -11,7 +11,7 @@ require 'securerandom'
 
 
 def with_mqtt_client(&block)
-        ::MQTT::Client.connect("dhcp-2-22.vms.sat.rdu2.redhat.com",
+        ::MQTT::Client.connect("hostname",
                                1883,
                                :ssl => false,
                                &block)
@@ -28,7 +28,7 @@ def mqtt_payload_base_create
         "metadata": {
         "action": "create",  
         "name": "UpstreamPulp",
-        "base_url": "10.1.2.22:8080",
+        "base_url": "upstream_url",
         "api_root": "/pulp/",
     },
       }.to_json
