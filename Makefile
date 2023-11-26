@@ -1,4 +1,4 @@
-PKGNAME := echo_worker
+PKGNAME := pop_content_worker
 
 ifeq ($(origin VERSION), undefined)
 	VERSION := 0.2.0
@@ -8,7 +8,7 @@ go_sources := $(wildcard src/*.go)
 
 build: $(go_sources)
 	mkdir -p build
-	CGO_ENABLED=0 go build -o build/echo_worker $^
+	CGO_ENABLED=0 go build -o build/pop_content_worker $^
 
 clean:
 	rm -rf build
